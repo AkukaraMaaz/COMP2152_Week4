@@ -91,8 +91,6 @@ monster_powers = {
     "Freezing Time": 4,
     "Super Hearing": 6,
 }
-
-#
 # Define the number of stars awarded to the Player
 num_stars = 0
 
@@ -156,30 +154,49 @@ input("Roll the dice for the monster's health points (Press enter)")
 m_health_points = random.choice(diceOptions)
 print("Player rolled " + str(m_health_points) + " health points for the monster")
 
-#Lab04 Q5
-print("!!Tou find a loot bag! Look Inside to find 2 items")
-input("Roll for first Item (Press Enter)")
-lootRoll = random.choice(1, len(loot_options) + 1)
-loot = loot_options.pop(lootRoll-1)
-belt.append(loot)
-print("Your Belt: ",belt)
-
+#Lab04 Q5 - item 1
+print("!!Tou find a loot bag! Look inside to find 2 items:")
 input("Roll for first item (Press Enter)")
-lootRoll = random.choice(1, len(loot_options) + 1)
+lootRoll = random.choice(range(1, len(loot_options) + 1))
 loot  = loot_options.pop(lootRoll - 1)
 belt.append(loot)
 print("Your belt: ", belt)
 
+#Lab04 Q6 - item 2
+input("Roll for first item (Press Enter)")
+lootRoll = random.choice(range(1, len(loot_options) + 1))
+loot  = loot_options.pop(lootRoll - 1)
+belt.append(loot)
+print("Your belt: ", belt)
+
+#Lab04 Q7 - Sort the belt
+print("You're neat, so organizr your belt alphabericallty:")
+belt.sort()
+print("your belt: ", belt)
+
+#Lab04 Q8 - use the belt
+print("you see a monster in the distance! So, quicly use your first item:")
+first_item = belt.pop(0)
+if first_item in good_loot_options:
+    health_points = min(6, (health_points + 2))
+    print("You used "+ first_item + "to hurt your health to " + str(health_points))
+elif first_item in bad_loot_options:
+    health_points = max(0, (health_points - 2))
+    print("You used "+ first_item + "to hurt your health to " + str(health_points))
+else:
+    print("You used "+ first_item + "but it's not helpful")
+
+input("Analyze the roll (Press enter)")
 # Compare Player vs Monster's strength
 print("--- You are matched in strength: " + str(combat_strength == m_combat_strength))
 
 # Check the Player's overall strength and health
 print("--- You have a strong player: " + str((combat_strength + health_points) >= 15))
 
-# Lab04 - Q2
+# Lab04 Q2
 # Roll for the monster's power
-input("Roll for Monster's Magic Power (Press Enter)")
-power_roll = random.choice(["Fire Magic", "Freezing Time", "Super Hearing"])
+input("Roll for Mnter's Magic Power (Press Enter)")
+power_roll = random.choice([    "Fire Magic", "Freezing Time", "Super Hearing"])
 
 # Lab04 Q3
 # Increase the monster's combat strength by it's power, woithout going over 6
